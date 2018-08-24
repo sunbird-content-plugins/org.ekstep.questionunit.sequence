@@ -15,11 +15,18 @@
   height:17.33333%;
 }
 .sequencing-content-container .option-container.vertical {
-  height: 59.7222222222%;
-  padding-top: 2.8125%;
-  padding-bottom: 7.1875%;
+  height: 83.5%;
+  width: 100%;
+  position: relative;
+  display: table;
   padding-right: 14.0625%;
   padding-left: 14.0625%;
+}
+
+.sequencing-content-container .option-container.vertical .option-block-container{
+  width: inherit;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .sequencing-content-container .option-container.vertical .option-block-container .option-block {
