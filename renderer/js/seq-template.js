@@ -1,10 +1,4 @@
 var SEQController = SEQController || {};
-SEQController.constant = {
-  qContainerElement: ".sequencing-content-container",
-  bgColors: ["#5DC4F5", "#FF7474", "#F9A817", "#48DCB6", "#5B6066"],
-  bgColor: "#5DC4F5"
-};
-
 /**
  * intializes renderer template html controller and provides renderer plugin data with controller, 
  * @param {Object} pluginInstance
@@ -12,8 +6,6 @@ SEQController.constant = {
  */
 SEQController.initTemplate = function (pluginInstance) {
   SEQController.pluginInstance = pluginInstance;
-  SEQController.constant.bgColor = SEQController.constant.bgColors[_.random(0, SEQController.constant.bgColors.length - 1)];
-  SEQController.bgLeftCircleTop = _.random(-6, 6) * 10;
 };
 
 /**
@@ -25,7 +17,7 @@ SEQController.initTemplate = function (pluginInstance) {
 SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
-  var wrapperStart = '<div class="sequencing-content-container plugin-content-container" style="background-color:<%= SEQController.constant.bgColor %>">';
+  var wrapperStart = '<div class="sequencing-content-container plugin-content-container" >';
   var wrapperStartQuestionComponent = '<div class="question-content-container">';
   var wrapperEndQuestionComponent = '</div>';
   var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
@@ -35,7 +27,7 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
   } else {
     getLayout = SEQController.getOptionLayout('vertical');
   }
-  return wrapperStart + wrapperStartQuestionComponent + org.ekstep.questionunit.questionComponent.generateQuestionComponent(SEQController.pluginInstance._manifest.id) + wrapperEndQuestionComponent + getLayout + wrapperEnd;
+  return org.ekstep.questionunit.backgroundComponent.getBackgroundGraphics() + wrapperStart + wrapperStartQuestionComponent + org.ekstep.questionunit.questionComponent.generateQuestionComponent(SEQController.pluginInstance._manifest.id) + wrapperEndQuestionComponent + getLayout + wrapperEnd;
 }
 
 /**
