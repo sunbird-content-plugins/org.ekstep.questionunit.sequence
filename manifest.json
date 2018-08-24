@@ -74,7 +74,7 @@
       },
       {
         "type": "js",
-        "src": "renderer/js/jquery-ui.min.js"
+        "src": "renderer/js/jquery-ui-drag-and-drop.min.js"
       },
       {
         "type": "js",
