@@ -1,6 +1,6 @@
 /*
  * Plugin to create sequencial order question
- * @class org.ekstep.questionunitsequencing:seqQuestionFormController
+ * @class org.ekstep.questionunitsequence:seqQuestionFormController
  * Sivashanmugam Kannan<sivashanmugam.kannan@funtoot.com>
  */
 angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormController', ['$scope', '$rootScope', 'questionServices', function ($scope, $rootScope, questionServices) {
@@ -33,32 +33,32 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
     $scope.seqFormData.question.text = this.getData();
   });
   questionInput.on('focus', function () {
-    $scope.generateTelemetry({ type: 'TOUCH', id: 'input', target: { id: 'questionunit-sequencing-question-on-focus', ver: '', type: 'input' } })
+    $scope.generateTelemetry({ type: 'TOUCH', id: 'input', target: { id: 'questionunit-sequence-question-on-focus', ver: '', type: 'input' } })
   });
   angular.element('.innerScroll').on('scroll', function () {
     $scope.generateTelemetry({
-      type: 'SCROLL', id: 'form', target: { id: 'questionunit-sequencing-form-scroll', ver: '', type: 'form' }
+      type: 'SCROLL', id: 'form', target: { id: 'questionunit-sequence-form-scroll', ver: '', type: 'form' }
     })
   });
   $scope.init = function () {
     /**
-     * editor:questionunit.sequencing:call form validation.
-     * @event org.ekstep.questionunit.sequencing:validateform
-     * @memberof org.ekstep.questionunit.sequencing.seq-controller
+     * editor:questionunit.sequence:call form validation.
+     * @event org.ekstep.questionunit.sequence:validateform
+     * @memberof org.ekstep.questionunit.sequence.seq-controller
      */
-    $scope.seqPluginInstance = org.ekstep.pluginframework.pluginManager.getPluginManifest("org.ekstep.questionunit.sequencing");
-    EventBus.listeners['org.ekstep.questionunit.sequencing:validateform'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.sequencing:validateform', function (event, callback) {
+    $scope.seqPluginInstance = org.ekstep.pluginframework.pluginManager.getPluginManifest("org.ekstep.questionunit.sequence");
+    EventBus.listeners['org.ekstep.questionunit.sequence:validateform'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.sequence:validateform', function (event, callback) {
       var validationRes = $scope.formValidation();
       callback(validationRes.isValid, validationRes.formData);
     }, $scope);
     /**
-     * editor:questionunit.sequencing:call form edit the question.
-     * @event org.ekstep.questionunit.sequencing:editquestion
-     * @memberof org.ekstep.questionunit.sequencing.seq-controller
+     * editor:questionunit.sequence:call form edit the question.
+     * @event org.ekstep.questionunit.sequence:editquestion
+     * @memberof org.ekstep.questionunit.sequence.seq-controller
      */
-    EventBus.listeners['org.ekstep.questionunit.sequencing:editquestion'] = [];
-    ecEditor.addEventListener('org.ekstep.questionunit.sequencing:editquestion', $scope.editSEQQuestion, $scope);
+    EventBus.listeners['org.ekstep.questionunit.sequence:editquestion'] = [];
+    ecEditor.addEventListener('org.ekstep.questionunit.sequence:editquestion', $scope.editSEQQuestion, $scope);
     ecEditor.dispatchEvent("org.ekstep.questionunit:ready");
 
     //adds two options
@@ -67,7 +67,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
   }
   /**
    * for edit flow
-   * @memberof org.ekstep.questionunit.sequencing
+   * @memberof org.ekstep.questionunit.sequence
    * @param {event} event data.
    * @param {question} data data.
    */
@@ -79,10 +79,10 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
   }
   /**
    * add the pair in seq
-   * @memberof org.ekstep.questionunit.sequencing
+   * @memberof org.ekstep.questionunit.sequence
    */
   $scope.addOption = function (index) {
-    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequencing-add-sequence', ver: '', type: 'button' } };
+    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequence-add-sequence', ver: '', type: 'button' } };
     if ($scope.seqFormData.options.length < 4) {
       if (index) {
         $scope.seqFormData.options[index] = angular.copy(generalDataObj);
@@ -94,7 +94,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
   }
   /**
    * check form validation
-   * @memberof org.ekstep.questionunit.sequencing.seq-controller
+   * @memberof org.ekstep.questionunit.sequence.seq-controller
    * @returns {Object} question data.
    */
   $scope.formValidation = function () {
@@ -133,12 +133,12 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
     return formConfig;
   }
   /**
-   * delete the pair in sequencing
-   * @memberof org.ekstep.questionunit.sequencing.seq-controller
+   * delete the pair in sequence
+   * @memberof org.ekstep.questionunit.sequence.seq-controller
    * @param {Integer} id data.
    */
   $scope.deleteOption = function (id, $repeatScope) {
-    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequencing-delete-sequence', ver: '', type: 'button' } };
+    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequence-delete-sequence', ver: '', type: 'button' } };
     if($scope.seqFormData.options.length > 2 ){
       $scope.seqFormData.options.splice(id, 1);
     }else{
@@ -157,7 +157,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
    * @param {string} mediaType `image` or `audio`
    */
   $scope.addMedia = function (type, index, mediaType) {
-    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequencing-add-' + mediaType, ver: '', type: 'button' } };
+    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequence-add-' + mediaType, ver: '', type: 'button' } };
     var mediaObject = {
       type: mediaType,
       search_filter: {} // All composite keys except mediaType
@@ -173,12 +173,12 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
       };
 
       if (type == 'q') {
-        telemetryObject.target.id = 'questionunit-sequencing-question-add-' + data.assetMedia.type;
+        telemetryObject.target.id = 'questionunit-sequence-question-add-' + data.assetMedia.type;
         $scope.seqFormData.question[data.assetMedia.type] = org.ekstep.contenteditor.mediaManager.getMediaOriginURL(data.assetMedia.src);
         data.assetMedia.type == 'audio' ? $scope.seqFormData.question.audioName = data.assetMedia.name :
           $scope.questionMedia[data.assetMedia.type] = media;
       } else {
-        telemetryObject.target.id = 'questionunit-sequencing-option-add-' + data.assetMedia.type;
+        telemetryObject.target.id = 'questionunit-sequence-option-add-' + data.assetMedia.type;
         $scope.seqFormData.options[index][data.assetMedia.type] = org.ekstep.contenteditor.mediaManager.getMediaOriginURL(data.assetMedia.src);
         data.assetMedia.type == 'audio' ? $scope.seqFormData.options[index].audioName = data.assetMedia.name : '';
         $scope.optionsMedia[data.assetMedia.type][index] = media;
@@ -198,13 +198,13 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
    * @param {string} mediaType 
    */
   $scope.deleteMedia = function (type, index, mediaType) {
-    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequencing-delete-' + mediaType, ver: '', type: 'button' } };
+    var telemetryObject = { type: 'TOUCH', id: 'button', target: { id: 'questionunit-sequence-delete-' + mediaType, ver: '', type: 'button' } };
     if (type == 'q') {
-      telemetryObject.target.id = 'questionunit-sequencing-delete' + mediaType;
+      telemetryObject.target.id = 'questionunit-sequence-delete' + mediaType;
       $scope.seqFormData.question[mediaType] = '';
       delete $scope.questionMedia[mediaType];
     } else {
-      telemetryObject.target.id = 'questionunit-sequencing-option-delete-' + mediaType;
+      telemetryObject.target.id = 'questionunit-sequence-option-delete-' + mediaType;
       $scope.seqFormData.options[index][mediaType] = '';
       delete $scope.optionsMedia[mediaType][index];
     }
@@ -217,7 +217,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
   $scope.callbacks = {
     deleteMedia: $scope.deleteMedia,
     addMedia: $scope.addMedia,
-    qtype: 'sequencing'
+    qtype: 'sequence'
   }
 
   /**
@@ -230,9 +230,9 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
         "id": $scope.seqPluginInstance.id,
         "ver": $scope.seqPluginInstance.ver
       }
-      data.form = data.form || 'question-creation-sequencing-form';
+      data.form = data.form || 'question-creation-sequence-form';
       questionServices.generateTelemetry(data);
     }
   }
 }]);
-//# sourceURL=questionunit.sequencing.editor.controller.js
+//# sourceURL=questionunit.sequence.editor.controller.js

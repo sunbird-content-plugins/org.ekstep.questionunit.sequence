@@ -1,8 +1,8 @@
 {
-  "id": "org.ekstep.questionunit.sequencing",
+  "id": "org.ekstep.questionunit.sequence",
   "ver": "1.0",
   "author": "Sivashanmugam Kannan (sivashanmugam.kannan@funtoot.com)",
-  "title": "Sequencing plugin With horizontal and vertical templates",
+  "title": "sequence plugin With horizontal and vertical templates",
   "description": "",
   "publishedDate": "",
   "icon": "assets/sequencial-preview.png",

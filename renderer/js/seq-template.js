@@ -2,7 +2,7 @@ var SEQController = SEQController || {};
 /**
  * intializes renderer template html controller and provides renderer plugin data with controller, 
  * @param {Object} pluginInstance
- * @memberof org.ekstep.questionunit.sequencing.seq-template
+ * @memberof org.ekstep.questionunit.sequence.seq-template
  */
 SEQController.initTemplate = function (pluginInstance) {
   SEQController.pluginInstance = pluginInstance;
@@ -12,12 +12,12 @@ SEQController.initTemplate = function (pluginInstance) {
  * returns complete sequence plugin renderer html, 
  * @param {String} selectedLayout selected layout from editor
  * @param {Object} availableLayout provides list of layouts
- * @memberof org.ekstep.questionunit.sequencing.seq-template
+ * @memberof org.ekstep.questionunit.sequence.seq-template
  */
 SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
-  var wrapperStart = '<div class="sequencing-content-container plugin-content-container" >';
+  var wrapperStart = '<div class="sequence-content-container plugin-content-container" >';
   var wrapperStartQuestionComponent = '<div class="question-content-container">';
   var wrapperEndQuestionComponent = '</div>';
   var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
@@ -33,7 +33,7 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 /**
  * returns sequence option html layout based it's type, 
  * @param {String} type either `horizotnal` or `vertical`
- * @memberof org.ekstep.questionunit.sequencing.seq-template
+ * @memberof org.ekstep.questionunit.sequence.seq-template
  */
 SEQController.getOptionLayout = function (type) {
   return '\

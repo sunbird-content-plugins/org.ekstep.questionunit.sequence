@@ -55,7 +55,7 @@
                                             <div class="form-group segment textBoxDiv">
                                                 <input type="text" class="form-control textbox" placeholder="Enter Sequence {{key + 1}}" ng-model="seqFormData.options[key].text"
                                                     maxlength="120" ng-class="{'has-success':seqForm['options_' + $index].$valid, 'has-error': submitted && seqForm['options_' + $index].$error.required}"
-                                                    ng-init="focused = false" ng-focus="focused = true;generateTelemetry({type: 'TOUCH', id: 'input', target: {id: 'questionunit-sequencing-option', ver: '', type: 'input'}})"
+                                                    ng-init="focused = false" ng-focus="focused = true;generateTelemetry({type: 'TOUCH', id: 'input', target: {id: 'questionunit-sequence-option', ver: '', type: 'input'}})"
                                                     ng-blur="focused = false" ng-required="!(seqFormData.options[$index].text.length)" name="options_{{$index}}"
                                                 />
                                             </div>
