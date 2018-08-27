@@ -1,1 +1,1 @@
-***mcqlugin***
+***seqPlugin***

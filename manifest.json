@@ -1,11 +1,11 @@
 {
-  "id": "org.ekstep.questionunit.seq",
+  "id": "org.ekstep.questionunit.sequence",
   "ver": "1.0",
   "author": "Sivashanmugam Kannan (sivashanmugam.kannan@funtoot.com)",
-  "title": "Add question",
+  "title": "sequence plugin With horizontal and vertical templates",
   "description": "",
   "publishedDate": "",
-  "icon": "assets/createquestion.png",
+  "icon": "assets/sequencial-preview.png",
   "languages": [
     "English"
   ],
