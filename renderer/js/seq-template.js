@@ -17,7 +17,7 @@ SEQController.initTemplate = function (pluginInstance) {
 SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
-  var wrapperStart = '<div class="sequence-content-container plugin-content-container" >';
+  var wrapperStart = '<div class="sequencing-content-container plugin-content-container" >';
   var wrapperStartQuestionComponent = '<div class="question-content-container">';
   var wrapperEndQuestionComponent = '</div>';
   var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
