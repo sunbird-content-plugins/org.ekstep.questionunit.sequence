@@ -1,15 +1,15 @@
 .sequencing-content-container {
   height: 100%;
   width: 100%;
-  line-height: 19px;
-  font-size: 14px;
+  font-size:4vh;
+  line-height: 6.7vh;
   letter-spacing: 0.7px;
   background: linear-gradient(0deg, #B4D0F6 0%, #D0E2F5 100%);
 }
 .sequencing-content-container .question-content-container{
   height:17.33333%;
 }
-.sequencing-content-container .option-container.vertical {
+.sequencing-content-container .option-container.horizontal {
   height: 83.5%;
   width: 100%;
   position: relative;
@@ -18,13 +18,13 @@
   padding-left: 14.0625%;
 }
 
-.sequencing-content-container .option-container.vertical .option-block-container{
+.sequencing-content-container .option-container.horizontal .option-block-container{
   width: inherit;
   display: table-cell;
   vertical-align: middle;
 }
 
-.sequencing-content-container .option-container.vertical .option-block-container .option-block {
+.sequencing-content-container .option-container.horizontal .option-block-container .option-block {
   cursor: move;
   width: 100%;
   height: 13.2955813953vh;
@@ -35,7 +35,7 @@
   position: relative;
 }
 
-.sequencing-content-container .option-container.vertical .option-block-container .option-block span {
+.sequencing-content-container .option-container.horizontal .option-block-container .option-block span {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -45,7 +45,8 @@
   align-items: center;
 }
 
-.sequencing-content-container .option-container.horizontal {
+
+.sequencing-content-container .option-container.vertical {
   height: 82.299%;
   padding-top: 13.125%;
   padding-bottom: 7.1875%;
@@ -54,7 +55,7 @@
   position: relative;
 }
 
-.sequencing-content-container .option-container.horizontal .option-block-container {
+.sequencing-content-container .option-container.vertical .option-block-container {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -65,7 +66,7 @@
   align-items: center;
 }
 
-.sequencing-content-container .option-container.horizontal .option-block-container .option-block {
+.sequencing-content-container .option-container.vertical .option-block-container .option-block {
   cursor: move;
   width: 17.62%;
   height: 36.58%;
@@ -77,7 +78,7 @@
   float: left;
 }
 
-.sequencing-content-container .option-container.horizontal .option-block-container .option-block span {
+.sequencing-content-container .option-container.vertical .option-block-container .option-block span {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -88,6 +89,6 @@
   justify-content: center;
 }
 
-.sequencing-content-container .option-container.horizontal .option-block:last-child {
+.sequencing-content-container .option-container.vertical .option-block:last-child {
   margin-right: 0%;
 }
