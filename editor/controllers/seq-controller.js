@@ -4,6 +4,7 @@
  * Sivashanmugam Kannan<sivashanmugam.kannan@funtoot.com>
  */
 angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormController', ['$scope', '$rootScope', 'questionServices', function ($scope, $rootScope, questionServices) {
+  $scope.setLayout($scope.seqTemplateTypes[0]);
   var generalDataObj = {
     'text': '',
     'image': '',
