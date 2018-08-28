@@ -1,8 +1,8 @@
 .sequencing-content-container {
   height: 100%;
   width: 100%;
-  line-height: 19px;
-  font-size: 14px;
+  font-size:4vh;
+  line-height: 6.7vh;
   letter-spacing: 0.7px;
   background: linear-gradient(0deg, #B4D0F6 0%, #D0E2F5 100%);
 }
