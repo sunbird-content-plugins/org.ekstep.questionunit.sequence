@@ -1,13 +1,13 @@
 /**
  *
  * Question Unit plugin to render a SEQ question
- * @class org.ekstep.questionunit.seq
+ * @class org.ekstep.questionunit.sequence
  * @extends org.ekstep.contentrenderer.questionUnitPlugin
  * @author Sivashanmugam Kannan <sivashanmugam.kannan@funtoot.com>
  */
 org.ekstep.questionunitseq = {};
 org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionUnitPlugin.extend({
-  _type: 'org.ekstep.questionunit.seq',
+  _type: 'org.ekstep.questionunit.sequence',
   _isContainer: true,
   _render: true,
   _selectedAnswers: [],
@@ -56,7 +56,7 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
       eval: correctAnswer,
       state: {
         val: {
-          "seq": this._question.data.options
+          "sequence": this._question.data.options
         }
       },
       score: partialScore,
@@ -73,4 +73,4 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
     QSTelemetryLogger.logEvent(QSTelemetryLogger.EVENT_TYPES.RESPONSE, {"type": "INPUT", "values": data});
   }
 });
-//# sourceURL=questionunit.seq.renderer.plugin.js
+//# sourceURL=questionunit.sequence.renderer.plugin.js
