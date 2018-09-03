@@ -57,13 +57,21 @@
 
 .sequencing-content-container .option-container.vertical .option-block-container {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  top: 32%;
   justify-content: center;
-  display: flex;
   align-items: center;
+  width:100%;
+  height:100%;
+}
+
+.sequencing-content-container .option-container.vertical .option-block-container.options-2 {
+  left:33%;
+}
+.sequencing-content-container .option-container.vertical .option-block-container.options-3 {
+  left:21%;
+}
+.sequencing-content-container .option-container.vertical .option-block-container.options-4 {
+  left:11%
 }
 
 .sequencing-content-container .option-container.vertical .option-block-container .option-block {
