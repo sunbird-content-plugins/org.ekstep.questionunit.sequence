@@ -17,7 +17,7 @@ SEQController.initTemplate = function (pluginInstance) {
 SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 
   SEQController.selectedLayout = selectedLayout;
-  var wrapperStart = '<div class="sequence-content-container plugin-content-container" >';
+  var wrapperStart = '<div class="sequencing-content-container plugin-content-container" >';
   var wrapperStartQuestionComponent = '<div class="question-content-container">';
   var wrapperEndQuestionComponent = '</div>';
   var wrapperEnd = '</div><script>SEQController.onDomReady()</script>';
@@ -38,7 +38,7 @@ SEQController.getQuestionTemplate = function (selectedLayout, availableLayout) {
 SEQController.getOptionLayout = function (type) {
   return '\
   <div class="option-container ' + type + '">' + '\
-      <div class="option-block-container">\
+      <div class="option-block-container options-<%= question.data.options.length %>">\
       <% _.each(question.data.options,function(val,key){ %>\
           <div data-seqorder=<%= val.sequenceOrder %> class="option-block">\
             <span><%= val.text %></span>\
