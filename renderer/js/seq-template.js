@@ -67,10 +67,10 @@ SEQController.touchHandler = function(event){
 }
 
 SEQController.touchConvertInit = function() {
-  document.addEventListener("touchstart", MTFController.touchHandler, true);
-  document.addEventListener("touchmove", MTFController.touchHandler, true);
-  document.addEventListener("touchend", MTFController.touchHandler, true);
-  document.addEventListener("touchcancel", MTFController.touchHandler, true);
+  document.addEventListener("touchstart", SEQController.touchHandler, true);
+  document.addEventListener("touchmove", SEQController.touchHandler, true);
+  document.addEventListener("touchend", SEQController.touchHandler, true);
+  document.addEventListener("touchcancel", SEQController.touchHandler, true);
 }
 
 
