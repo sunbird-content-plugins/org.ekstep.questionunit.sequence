@@ -70,6 +70,7 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
         }
       },
       score: questionScore,
+      max_score: this._question.config.max_score,
       values: telemetryValues,
       noOfCorrectAns: correctAnswersCount,
       totalAns: totalOptions
