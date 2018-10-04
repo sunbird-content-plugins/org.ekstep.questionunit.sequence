@@ -29,7 +29,7 @@
 }
 
 .sequencing-content-container .option-container.horizontal .option-block-container .option-block {
-  overflow:hidden;
+  overflow: hidden;
   cursor: move;
   width: 100%;
   height: 13.2955813953vh;
@@ -65,7 +65,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 56%;
 }
 
 .sequencing-content-container .option-container.vertical .option-block-container.options-2 {
@@ -81,10 +81,10 @@
 }
 
 .sequencing-content-container .option-container.vertical .option-block-container .option-block {
-  overflow:hidden;
+  overflow: hidden;
   cursor: move;
   width: 17.62%;
-  height: 36.58%;
+  height: 65.334%;
   margin-right: 2.25%;
   border-radius: 4px;
   background-color: #FFFFFF;
