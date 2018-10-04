@@ -26,7 +26,12 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
     _.each(this._question.data.options, function(option,index){
       option.sequenceOrder = index + 1;
     })
-    this._question.data.options = _.shuffle(this._question.data.options);
+    if(!this._question.state){
+      this._question.data.options = _.shuffle(this._question.data.options);
+    } else {
+      this._question.data.options = this._question.state.val.seq_rearranged;
+    }
+    
   },
   postQuestionShow: function (event) {
     var instance = this;
@@ -38,7 +43,13 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
     var correctAnswer = true;
     var correctAnswersCount = 0;
     var telemetryValues = [];
+    var seq_rearranged = [];
     var totalOptions = instance._question.data.options.length;
+
+    for(var i = 0;i < totalOptions;i++){
+      seq_rearranged[i] = {};
+    }
+
     $('.option-block').each(function(actualSeqMapIndex, elem){
       var telObj = {
         'SEQ':[]
@@ -46,6 +57,13 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
       var selectedSeqOrder = parseInt($(elem).data('seqorder')) - 1;
       telObj['SEQ'][actualSeqMapIndex] = instance._question.data.options[actualSeqMapIndex];
       telemetryValues.push(telObj);
+
+      for(var i = 0;i < totalOptions;i++){
+        if(instance._question.data.options[i].sequenceOrder == selectedSeqOrder + 1){
+          seq_rearranged[actualSeqMapIndex] = instance._question.data.options[i];
+        }
+      }
+
       if(selectedSeqOrder == actualSeqMapIndex){
         correctAnswersCount++;
       } else {
@@ -66,7 +84,8 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
       eval: correctAnswer,
       state: {
         val: {
-          "sequence": this._question.data.options
+          "sequence": this._question.data.options,
+          "seq_rearranged": seq_rearranged
         }
       },
       score: questionScore,
