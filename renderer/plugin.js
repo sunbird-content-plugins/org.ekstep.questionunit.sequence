@@ -29,7 +29,18 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
     if(!this._question.state){
       this._question.data.options = _.shuffle(this._question.data.options);
     } else {
-      this._question.data.options = this._question.state.val.seq_rearranged;
+      //BASED on the rearranged order update in seqeuence
+      var renderedOptions = this._question.state.val.seq_rendered;
+      var reorderedOptionsIndexes = this._question.state.val.seq_rearranged;
+      var newOrderedOptions = [];
+      var optionsLength = renderedOptions.length;
+      for(var i = 0;i < optionsLength;i++){
+        var seqObjIndex = _.findIndex(renderedOptions, function(seqOpt){
+          return seqOpt.sequenceOrder == reorderedOptionsIndexes[i];
+        })
+        newOrderedOptions[i] = renderedOptions[seqObjIndex];
+      }
+      this._question.data.options = newOrderedOptions;
     }
     
   },
@@ -46,23 +57,14 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
     var seq_rearranged = [];
     var totalOptions = instance._question.data.options.length;
 
-    for(var i = 0;i < totalOptions;i++){
-      seq_rearranged[i] = {};
-    }
-
     $('.option-block').each(function(actualSeqMapIndex, elem){
       var telObj = {
         'SEQ':[]
       };
       var selectedSeqOrder = parseInt($(elem).data('seqorder')) - 1;
+      seq_rearranged[actualSeqMapIndex] = selectedSeqOrder + 1;
       telObj['SEQ'][actualSeqMapIndex] = instance._question.data.options[actualSeqMapIndex];
       telemetryValues.push(telObj);
-
-      for(var i = 0;i < totalOptions;i++){
-        if(instance._question.data.options[i].sequenceOrder == selectedSeqOrder + 1){
-          seq_rearranged[actualSeqMapIndex] = instance._question.data.options[i];
-        }
-      }
 
       if(selectedSeqOrder == actualSeqMapIndex){
         correctAnswersCount++;
@@ -84,8 +86,8 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
       eval: correctAnswer,
       state: {
         val: {
-          "sequence": this._question.data.options,
-          "seq_rearranged": seq_rearranged
+          "seq_rearranged": seq_rearranged,
+          "seq_rendered": instance._question.data.options
         }
       },
       score: questionScore,
