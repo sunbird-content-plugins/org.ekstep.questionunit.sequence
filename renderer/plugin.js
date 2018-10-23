@@ -26,7 +26,23 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
     _.each(this._question.data.options, function(option,index){
       option.sequenceOrder = index + 1;
     })
-    this._question.data.options = _.shuffle(this._question.data.options);
+    if(!this._question.state){
+      this._question.data.options = _.shuffle(this._question.data.options);
+    } else {
+      //BASED on the rearranged order update in seqeuence
+      var renderedOptions = this._question.state.val.seq_rendered;
+      var reorderedOptionsIndexes = this._question.state.val.seq_rearranged;
+      var newOrderedOptions = [];
+      var optionsLength = renderedOptions.length;
+      for(var i = 0;i < optionsLength;i++){
+        var seqObjIndex = _.findIndex(renderedOptions, function(seqOpt){
+          return seqOpt.sequenceOrder == reorderedOptionsIndexes[i];
+        })
+        newOrderedOptions[i] = renderedOptions[seqObjIndex];
+      }
+      this._question.data.options = newOrderedOptions;
+    }
+    
   },
   postQuestionShow: function (event) {
     var instance = this;
@@ -38,14 +54,18 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
     var correctAnswer = true;
     var correctAnswersCount = 0;
     var telemetryValues = [];
+    var seq_rearranged = [];
     var totalOptions = instance._question.data.options.length;
+
     $('.option-block').each(function(actualSeqMapIndex, elem){
       var telObj = {
         'SEQ':[]
       };
       var selectedSeqOrder = parseInt($(elem).data('seqorder')) - 1;
+      seq_rearranged[actualSeqMapIndex] = selectedSeqOrder + 1;
       telObj['SEQ'][actualSeqMapIndex] = instance._question.data.options[actualSeqMapIndex];
       telemetryValues.push(telObj);
+
       if(selectedSeqOrder == actualSeqMapIndex){
         correctAnswersCount++;
       } else {
@@ -66,10 +86,12 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
       eval: correctAnswer,
       state: {
         val: {
-          "sequence": this._question.data.options
+          "seq_rearranged": seq_rearranged,
+          "seq_rendered": instance._question.data.options
         }
       },
       score: questionScore,
+      max_score: this._question.config.max_score,
       values: telemetryValues,
       noOfCorrectAns: correctAnswersCount,
       totalAns: totalOptions
