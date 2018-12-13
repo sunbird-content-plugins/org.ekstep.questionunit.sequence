@@ -52,6 +52,10 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
       var validationRes = $scope.formValidation();
       callback(validationRes.isValid, validationRes.formData);
     }, $scope);
+    
+    //adds two options
+    $scope.addOption();
+    $scope.addOption();
     /**
      * editor:questionunit.sequence:call form edit the question.
      * @event org.ekstep.questionunit.sequence:editquestion
@@ -60,10 +64,6 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
     EventBus.listeners['org.ekstep.questionunit.sequence:editquestion'] = [];
     ecEditor.addEventListener('org.ekstep.questionunit.sequence:editquestion', $scope.editSEQQuestion, $scope);
     ecEditor.dispatchEvent("org.ekstep.questionunit:ready");
-
-    //adds two options
-    $scope.addOption();
-    $scope.addOption();
   }
   /**
    * for edit flow
@@ -74,7 +74,7 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
   $scope.editSEQQuestion = function (event, data) {
     var qdata = data.data;
     $scope.seqFormData.question = qdata.question;
-    $scope.seqFormData.option = qdata.option;
+    $scope.seqFormData.options = qdata.options;
     $scope.editMedia = qdata.media;
   }
   /**
@@ -175,8 +175,8 @@ angular.module('seqApp', ['org.ekstep.question']).controller('seqQuestionFormCon
       if (type == 'q') {
         telemetryObject.target.id = 'questionunit-sequence-question-add-' + data.assetMedia.type;
         $scope.seqFormData.question[data.assetMedia.type] = org.ekstep.contenteditor.mediaManager.getMediaOriginURL(data.assetMedia.src);
-        data.assetMedia.type == 'audio' ? $scope.seqFormData.question.audioName = data.assetMedia.name :
-          $scope.questionMedia[data.assetMedia.type] = media;
+        data.assetMedia.type == 'audio' ? $scope.seqFormData.question.audioName = data.assetMedia.name : '';
+        $scope.questionMedia[data.assetMedia.type] = media;
       } else {
         telemetryObject.target.id = 'questionunit-sequence-option-add-' + data.assetMedia.type;
         $scope.seqFormData.options[index][data.assetMedia.type] = org.ekstep.contenteditor.mediaManager.getMediaOriginURL(data.assetMedia.src);
