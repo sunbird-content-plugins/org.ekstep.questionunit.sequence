@@ -30,7 +30,7 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
       this._question.data.options = _.shuffle(this._question.data.options);
     } else {
       //BASED on the rearranged order update in seqeuence
-      var renderedOptions = this._question.state.val.seq_rendered;
+      var renderedOptions = this._question.state.seq_rendered;
       var reorderedOptionsIndexes = this._question.state.val.seq_rearranged;
       var newOrderedOptions = [];
       var optionsLength = renderedOptions.length;
@@ -87,8 +87,8 @@ org.ekstep.questionunitseq.RendererPlugin = org.ekstep.contentrenderer.questionU
       state: {
         val: {
           "seq_rearranged": seq_rearranged,
-          "seq_rendered": instance._question.data.options
-        }
+        },
+        "seq_rendered": instance._question.data.options
       },
       score: questionScore,
       max_score: this._question.config.max_score,
